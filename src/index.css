@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: "Space Grotesk", "Noto Sans SC", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #FAFAFA;
+  background-color: #0A0A0F;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #0A0A0F;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A0F;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2A2A3A;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3A3A4A;
+}
+
+::selection {
+  background: rgba(255, 107, 53, 0.3);
+  color: #FAFAFA;
+}
+
+.font-display {
+  font-family: "Bebas Neue", sans-serif;
+}
+
+.font-body {
+  font-family: "Space Grotesk", "Noto Sans SC", sans-serif;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  font-family: "Bebas Neue", "Noto Sans SC", sans-serif;
+  color: #FAFAFA;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.markdown-body h1 {
+  font-size: 2.5rem;
+  letter-spacing: 0.02em;
+}
+
+.markdown-body h2 {
+  font-size: 2rem;
+  letter-spacing: 0.02em;
+  border-bottom: 1px solid #2A2A3A;
+  padding-bottom: 0.3em;
+}
+
+.markdown-body h3 {
+  font-size: 1.5rem;
+}
+
+.markdown-body p {
+  margin-bottom: 1em;
+  line-height: 1.8;
+  color: #FAFAFA;
+}
+
+.markdown-body a {
+  color: #00D9FF;
+  text-decoration: none;
+}
+
+.markdown-body a:hover {
+  text-decoration: underline;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  margin-bottom: 1em;
+  padding-left: 1.5em;
+}
+
+.markdown-body li {
+  margin-bottom: 0.3em;
+}
+
+.markdown-body blockquote {
+  border-left: 4px solid #FF6B35;
+  padding-left: 1em;
+  margin-left: 0;
+  margin-bottom: 1em;
+  color: #8A8A9A;
+  font-style: italic;
+}
+
+.markdown-body code {
+  background: #1E1E2E;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 0.9em;
+  color: #FF6B35;
+}
+
+.markdown-body pre {
+  background: #13131F;
+  padding: 1em;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 1em;
+  border: 1px solid #2A2A3A;
+}
+
+.markdown-body pre code {
+  background: transparent;
+  padding: 0;
+  color: #FAFAFA;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 1em 0;
+}
+
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1em;
+}
+
+.markdown-body th,
+.markdown-body td {
+  border: 1px solid #2A2A3A;
+  padding: 0.5em 0.75em;
+  text-align: left;
+}
+
+.markdown-body th {
+  background: #1E1E2E;
+  font-weight: 600;
+}
+
+.markdown-body hr {
+  border: none;
+  border-top: 1px solid #2A2A3A;
+  margin: 2em 0;
+}
