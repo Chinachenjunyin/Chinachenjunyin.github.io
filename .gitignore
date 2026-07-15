@@ -25,3 +25,6 @@ dist-ssr
 
 # Trae documents
 .trae/documents
+
+# pnpm store
+.pnpm-store
