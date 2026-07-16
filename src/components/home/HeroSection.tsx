@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
@@ -81,12 +82,12 @@ export default function HeroSection() {
           >
             浏览文章
           </a>
-          <a
-            href="/about"
+          <Link
+            to="/about"
             className="px-8 py-3 border border-border text-text rounded font-medium hover:border-primary hover:text-primary transition-all"
           >
             了解更多
-          </a>
+          </Link>
         </motion.div>
       </div>
 
