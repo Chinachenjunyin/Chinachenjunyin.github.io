@@ -26,7 +26,7 @@ export default function ArticleCard({
       transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
     >
       <Link to={`/article/${article.id}`} className="group block">
-        <div className="bg-white/60 backdrop-blur-xl rounded-3xl overflow-hidden border border-white/50 shadow-xl shadow-indigo-500/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-indigo-500/15">
+        <div className="bg-white/40 backdrop-blur-md rounded-3xl overflow-hidden border border-white/40 shadow-xl transition duration-500 hover:scale-[1.01]">
           {article.cover && (
             <div className="aspect-video overflow-hidden">
               <img

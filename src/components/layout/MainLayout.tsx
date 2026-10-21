@@ -1,9 +1,10 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import MusicPlayer from "../shared/MusicPlayer";
 
 export default function MainLayout() {
+  const { pathname } = useLocation();
   return (
     <div className="min-h-screen text-text font-body">
       {/* Fixed glassmorphism background layer */}
@@ -20,13 +21,13 @@ export default function MainLayout() {
 
       <div className="relative z-10">
         <Header />
-        <main className="pt-28">
+        <main className="pt-24 sm:pt-28">
           <Outlet />
         </main>
         <Footer />
       </div>
 
-      <MusicPlayer />
+      {pathname !== "/" && <MusicPlayer />}
     </div>
   );
 }
