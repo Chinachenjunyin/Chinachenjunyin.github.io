@@ -80,10 +80,6 @@ export default function AdminLogin() {
               登录
             </button>
           </form>
-
-          <p className="text-center text-xs text-text-muted mt-6">
-            默认密码: 123456
-          </p>
         </div>
       </motion.div>
     </div>
