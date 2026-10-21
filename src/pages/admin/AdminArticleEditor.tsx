@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Save, Eye, EyeOff, ArrowLeft } from "lucide-react";
+import { Save, Eye, EyeOff, ArrowLeft, ImagePlus, Upload, X } from "lucide-react";
 import { v4 as uuidv4 } from "uuid";
 import MarkdownRenderer from "@/components/shared/MarkdownRenderer";
 import { useAppStore } from "@/context/AppContext";
 import { Article } from "@/types";
+import { fileToDataURL } from "@/utils/imageUpload";
 
 export default function AdminArticleEditor() {
   const { id } = useParams<{ id: string }>();
@@ -25,6 +26,12 @@ export default function AdminArticleEditor() {
   const [categoryId, setCategoryId] = useState("");
   const [selectedTagIds, setSelectedTagIds] = useState<string[]>([]);
   const [showPreview, setShowPreview] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const coverFileRef = useRef<HTMLInputElement>(null);
+  const contentFileRef = useRef<HTMLInputElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const coverIsLocal = cover.startsWith("data:");
 
   useEffect(() => {
     if (isEdit && id) {
@@ -39,6 +46,49 @@ export default function AdminArticleEditor() {
       }
     }
   }, [isEdit, id, articles]);
+
+  const handleCoverFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (!file) return;
+    setUploading(true);
+    try {
+      setCover(await fileToDataURL(file));
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleContentFiles = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const files = Array.from(e.target.files || []);
+    e.target.value = "";
+    if (files.length === 0) return;
+    setUploading(true);
+    try {
+      const urls: string[] = [];
+      for (const f of files) {
+        urls.push(await fileToDataURL(f));
+      }
+      const snippet = urls.map((u) => `\n![图片](${u})\n`).join("");
+      const ta = textareaRef.current;
+      if (ta) {
+        const start = ta.selectionStart ?? content.length;
+        const end = ta.selectionEnd ?? content.length;
+        setContent(content.slice(0, start) + snippet + content.slice(end));
+        requestAnimationFrame(() => {
+          ta.focus();
+          const pos = start + snippet.length;
+          ta.setSelectionRange(pos, pos);
+        });
+      } else {
+        setContent(content + snippet);
+      }
+    } finally {
+      setUploading(false);
+    }
+  };
 
   const toggleTag = (tagId: string) => {
     setSelectedTagIds((prev) =>
@@ -152,15 +202,50 @@ export default function AdminArticleEditor() {
           </div>
           <div>
             <label className="block text-sm text-text-muted mb-1.5">
-              封面图 URL
+              封面图
             </label>
-            <input
-              type="text"
-              value={cover}
-              onChange={(e) => setCover(e.target.value)}
-              className="w-full px-4 py-2.5 bg-background border border-border rounded-lg text-text focus:outline-none focus:border-primary transition-colors"
-              placeholder="https://..."
-            />
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={coverIsLocal ? "" : cover}
+                onChange={(e) => setCover(e.target.value)}
+                className="flex-1 min-w-0 px-4 py-2.5 bg-background border border-border rounded-lg text-text focus:outline-none focus:border-primary transition-colors"
+                placeholder={coverIsLocal ? "已上传本地图片" : "https://..."}
+              />
+              <button
+                type="button"
+                onClick={() => coverFileRef.current?.click()}
+                disabled={uploading}
+                className="flex items-center gap-1.5 px-3 py-2.5 bg-background border border-border rounded-lg text-sm text-text-muted hover:text-text transition-colors disabled:opacity-50 shrink-0"
+              >
+                <Upload className="w-4 h-4" />
+                {uploading ? "处理中" : "本地上传"}
+              </button>
+              <input
+                ref={coverFileRef}
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleCoverFile}
+              />
+            </div>
+            {cover && (
+              <div className="relative mt-2 w-44">
+                <img
+                  src={cover}
+                  alt="封面预览"
+                  className="w-44 h-24 object-cover rounded-lg border border-border"
+                />
+                <button
+                  type="button"
+                  onClick={() => setCover("")}
+                  aria-label="移除封面"
+                  className="absolute top-1 right-1 w-6 h-6 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition-colors"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            )}
           </div>
         </div>
 
@@ -186,10 +271,30 @@ export default function AdminArticleEditor() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-surface rounded-xl border border-border p-6">
-          <label className="block text-sm text-text-muted mb-3">
-            Markdown 内容
-          </label>
+          <div className="flex items-center justify-between mb-3">
+            <label className="block text-sm text-text-muted">
+              Markdown 内容
+            </label>
+            <button
+              type="button"
+              onClick={() => contentFileRef.current?.click()}
+              disabled={uploading}
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-background border border-border rounded-lg text-xs text-text-muted hover:text-text transition-colors disabled:opacity-50"
+            >
+              <ImagePlus className="w-3.5 h-3.5" />
+              {uploading ? "处理中…" : "插入图片"}
+            </button>
+            <input
+              ref={contentFileRef}
+              type="file"
+              accept="image/*"
+              multiple
+              className="hidden"
+              onChange={handleContentFiles}
+            />
+          </div>
           <textarea
+            ref={textareaRef}
             value={content}
             onChange={(e) => setContent(e.target.value)}
             className="w-full h-[60vh] px-4 py-3 bg-background border border-border rounded-lg text-text font-mono text-sm focus:outline-none focus:border-primary transition-colors resize-none"
