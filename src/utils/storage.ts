@@ -83,4 +83,19 @@ export function initStorage(): void {
   if (!localStorage.getItem(KEYS.settings)) {
     saveSettings(defaultSettings);
   }
+  // 一次性更正旧版默认品牌名（仅当仍是旧默认值时替换，不动用户自定义内容）
+  const settings = getSettings();
+  const migrated = { ...settings };
+  let changed = false;
+  if (migrated.blogTitle === "极光博客") {
+    migrated.blogTitle = "记录思考";
+    changed = true;
+  }
+  if (migrated.authorName === "极光作者") {
+    migrated.authorName = "博主";
+    changed = true;
+  }
+  if (changed) {
+    saveSettings(migrated);
+  }
 }
