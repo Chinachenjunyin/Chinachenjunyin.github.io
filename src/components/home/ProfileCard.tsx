@@ -1,22 +1,42 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
-import { Github, Mail, Rss, Music4 } from "lucide-react";
+import { Github, Mail, Rss, Music4, Check } from "lucide-react";
 import { useAppStore } from "@/context/AppContext";
 
+const EMAIL = "dgokbfrcjkbfj5@gmail.com";
+
 const socialBtnClass =
-  "w-10 h-10 rounded-xl bg-white/50 border border-white/40 shadow-sm flex items-center justify-center text-slate-700 hover:bg-indigo-500 hover:text-white transition";
+  "w-10 h-10 rounded-xl bg-white/50 border border-white/40 shadow-sm flex items-center justify-center text-slate-700 transition-all duration-300 ease-out hover:bg-indigo-500 hover:text-white hover:scale-110 hover:-translate-y-0.5 hover:shadow-lg active:scale-95";
 
 export default function ProfileCard() {
   const articles = useAppStore((s) => s.articles);
   const categories = useAppStore((s) => s.categories);
   const tags = useAppStore((s) => s.tags);
   const settings = useAppStore((s) => s.settings);
+  const [copied, setCopied] = useState(false);
 
   const stats = [
     { value: articles.length, label: "文章" },
     { value: categories.length, label: "分类" },
     { value: tags.length, label: "标签" },
   ];
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+    } catch {
+      const ta = document.createElement("textarea");
+      ta.value = EMAIL;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+    }
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 1600);
+  };
 
   return (
     <div className="lg:col-span-7 bg-white/40 backdrop-blur-md border border-white/40 shadow-xl rounded-3xl transition duration-500 hover:scale-[1.01] p-6 md:p-8 min-h-[280px] flex flex-col justify-between">
@@ -38,8 +58,8 @@ export default function ProfileCard() {
         </div>
       </div>
 
-      <div className="flex items-end justify-between mt-8">
-        <div className="flex gap-6">
+      <div className="flex flex-col gap-6 mt-10 sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex gap-7">
           {stats.map((item, i) => (
             <Fragment key={item.label}>
               {i > 0 && <div className="w-px h-10 bg-slate-300/50 self-center" />}
@@ -65,9 +85,30 @@ export default function ProfileCard() {
           >
             <Github className="w-5 h-5" />
           </a>
-          <Link to="/about" className={socialBtnClass} aria-label="联系我">
-            <Mail className="w-5 h-5" />
-          </Link>
+          <div className="relative">
+            <button
+              type="button"
+              onClick={copyEmail}
+              className={socialBtnClass}
+              aria-label="复制邮箱"
+              title="点击复制邮箱"
+            >
+              {copied ? (
+                <Check className="w-5 h-5 text-emerald-400" />
+              ) : (
+                <Mail className="w-5 h-5" />
+              )}
+            </button>
+            <span
+              className={`absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-slate-900/85 px-2.5 py-1.5 text-xs text-white shadow-lg pointer-events-none transition-all duration-300 ease-out ${
+                copied
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-1"
+              }`}
+            >
+              邮箱已复制
+            </span>
+          </div>
           <Link to="/articles" className={socialBtnClass} aria-label="全部文章">
             <Rss className="w-5 h-5" />
           </Link>
