@@ -35,6 +35,22 @@ export default function MusicPlayer() {
     setPlaying(v);
   };
 
+  // 某首歌播不了（版权受限等）时自动跳到下一首；全部失败则停下，不无限循环
+  const failCount = useRef(0);
+  const lastFailAt = useRef(0);
+  const handleTrackError = () => {
+    const now = Date.now();
+    if (now - lastFailAt.current < 1500) return; // 同一次失败的重复信号只算一次
+    lastFailAt.current = now;
+    failCount.current += 1;
+    if (failCount.current < playlist.length) {
+      setIndex((i) => (i + 1) % playlist.length);
+    } else {
+      failCount.current = 0;
+      setPlayingBoth(false);
+    }
+  };
+
   // 切歌时加载新曲目，若处于播放意图则自动续播
   useEffect(() => {
     const audio = audioRef.current;
@@ -43,7 +59,7 @@ export default function MusicPlayer() {
     audio.load();
     setCurrent(0);
     if (playingRef.current) {
-      audio.play().catch(() => setPlayingBoth(false));
+      audio.play().catch(() => handleTrackError());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index]);
@@ -92,6 +108,7 @@ export default function MusicPlayer() {
   const goTo = (i: number) => {
     const n = playlist.length;
     const next = ((i % n) + n) % n;
+    failCount.current = 0;
     setPlayingBoth(true);
     localStorage.setItem(PREF_KEY, "1");
     setIndex(next);
@@ -228,6 +245,10 @@ export default function MusicPlayer() {
         preload="metadata"
         onTimeUpdate={(e) => setCurrent(e.currentTarget.currentTime)}
         onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
+        onCanPlay={() => {
+          failCount.current = 0;
+        }}
+        onError={() => handleTrackError()}
         onEnded={() => goTo(index + 1)}
       />
     </div>

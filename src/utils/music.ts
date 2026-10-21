@@ -4,21 +4,21 @@ export interface Track {
   src: string;
 }
 
-// 博客音乐歌单：把 src 换成任意可直链播放的 mp3 地址即可换歌
+// 博客音乐歌单：src 为网易云官方外链（版权由平台按地区判定，播不了的曲目播放器会自动跳过）
 export const playlist: Track[] = [
   {
-    title: "SoundHelix Song 1",
-    artist: "SoundHelix 演示曲目",
-    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+    title: "雨爱",
+    artist: "杨丞琳",
+    src: "https://music.163.com/song/media/outer/url?id=316100.mp3",
   },
   {
-    title: "SoundHelix Song 2",
-    artist: "SoundHelix 演示曲目",
-    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+    title: "下雨天",
+    artist: "梁心颐 Lara（南拳妈妈原唱）",
+    src: "https://music.163.com/song/media/outer/url?id=3384823504.mp3",
   },
   {
-    title: "SoundHelix Song 3",
-    artist: "SoundHelix 演示曲目",
-    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+    title: "Cry for Me",
+    artist: "Camila Cabello",
+    src: "https://music.163.com/song/media/outer/url?id=1394670848.mp3",
   },
 ];
