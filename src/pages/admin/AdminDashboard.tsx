@@ -16,21 +16,21 @@ export default function AdminDashboard() {
       value: articles.length,
       icon: FileText,
       color: "#FF6B35",
-      link: "/admin/articles",
+      link: "/xiaoyu/articles",
     },
     {
       label: "总分类数",
       value: categories.length,
       icon: FolderOpen,
       color: "#00D9FF",
-      link: "/admin/categories",
+      link: "/xiaoyu/categories",
     },
     {
       label: "总标签数",
       value: tags.length,
       icon: Tags,
       color: "#A855F7",
-      link: "/admin/tags",
+      link: "/xiaoyu/tags",
     },
     {
       label: "本月新增",
@@ -44,7 +44,7 @@ export default function AdminDashboard() {
       }).length,
       icon: TrendingUp,
       color: "#22C55E",
-      link: "/admin/articles",
+      link: "/xiaoyu/articles",
     },
   ];
 
@@ -98,7 +98,7 @@ export default function AdminDashboard() {
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-lg font-bold text-text">最近文章</h2>
             <Link
-              to="/admin/articles"
+              to="/xiaoyu/articles"
               className="text-sm text-primary hover:underline"
             >
               查看全部
@@ -137,7 +137,7 @@ export default function AdminDashboard() {
                     </p>
                   </div>
                   <Link
-                    to={`/admin/articles/edit/${article.id}`}
+                    to={`/xiaoyu/articles/edit/${article.id}`}
                     className="text-xs text-text-muted hover:text-primary transition-colors flex-shrink-0"
                   >
                     编辑
@@ -152,7 +152,7 @@ export default function AdminDashboard() {
           <h2 className="text-lg font-bold text-text mb-6">快捷操作</h2>
           <div className="space-y-3">
             <Link
-              to="/admin/articles/new"
+              to="/xiaoyu/articles/new"
               className="flex items-center gap-3 p-3 bg-background rounded-lg hover:bg-primary/10 transition-colors group"
             >
               <div className="w-8 h-8 rounded bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -161,7 +161,7 @@ export default function AdminDashboard() {
               <span className="text-sm text-text">新增文章</span>
             </Link>
             <Link
-              to="/admin/categories"
+              to="/xiaoyu/categories"
               className="flex items-center gap-3 p-3 bg-background rounded-lg hover:bg-secondary/10 transition-colors group"
             >
               <div className="w-8 h-8 rounded bg-secondary/10 flex items-center justify-center group-hover:bg-secondary/20 transition-colors">
@@ -170,7 +170,7 @@ export default function AdminDashboard() {
               <span className="text-sm text-text">管理分类</span>
             </Link>
             <Link
-              to="/admin/tags"
+              to="/xiaoyu/tags"
               className="flex items-center gap-3 p-3 bg-background rounded-lg hover:bg-purple-500/10 transition-colors group"
             >
               <div className="w-8 h-8 rounded bg-purple-500/10 flex items-center justify-center group-hover:bg-purple-500/20 transition-colors">

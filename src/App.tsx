@@ -39,16 +39,16 @@ export default function App() {
           <Route path="/about" element={<About />} />
         </Route>
 
-        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/xiaoyu/login" element={<AdminLogin />} />
         <Route element={<AdminLayout />}>
-          <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="/admin/articles" element={<AdminArticles />} />
-          <Route path="/admin/articles/new" element={<AdminArticleEditor />} />
-          <Route path="/admin/articles/edit/:id" element={<AdminArticleEditor />} />
-          <Route path="/admin/categories" element={<AdminCategories />} />
-          <Route path="/admin/tags" element={<AdminTags />} />
-          <Route path="/admin/settings" element={<AdminSettings />} />
+          <Route path="/xiaoyu" element={<Navigate to="/xiaoyu/dashboard" replace />} />
+          <Route path="/xiaoyu/dashboard" element={<AdminDashboard />} />
+          <Route path="/xiaoyu/articles" element={<AdminArticles />} />
+          <Route path="/xiaoyu/articles/new" element={<AdminArticleEditor />} />
+          <Route path="/xiaoyu/articles/edit/:id" element={<AdminArticleEditor />} />
+          <Route path="/xiaoyu/categories" element={<AdminCategories />} />
+          <Route path="/xiaoyu/tags" element={<AdminTags />} />
+          <Route path="/xiaoyu/settings" element={<AdminSettings />} />
         </Route>
       </Routes>
     </Router>

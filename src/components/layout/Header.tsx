@@ -54,12 +54,6 @@ export default function Header() {
                 )}
               </Link>
             ))}
-            <Link
-              to="/admin/login"
-              className="text-xs px-4 py-1.5 rounded-full bg-white/50 backdrop-blur border border-white/60 text-text-muted hover:text-primary hover:border-primary/40 transition-colors"
-            >
-              后台
-            </Link>
           </nav>
 
           <button
@@ -93,13 +87,6 @@ export default function Header() {
                   {link.label}
                 </Link>
               ))}
-              <Link
-                to="/admin/login"
-                onClick={() => setMenuOpen(false)}
-                className="block text-xs text-text-muted"
-              >
-                后台管理
-              </Link>
             </div>
           </motion.div>
         )}

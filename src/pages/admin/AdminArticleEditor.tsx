@@ -71,14 +71,14 @@ export default function AdminArticleEditor() {
       addArticle(article);
     }
 
-    navigate("/admin/articles");
+    navigate("/xiaoyu/articles");
   };
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <button
-          onClick={() => navigate("/admin/articles")}
+          onClick={() => navigate("/xiaoyu/articles")}
           className="flex items-center gap-2 text-text-muted hover:text-text transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />

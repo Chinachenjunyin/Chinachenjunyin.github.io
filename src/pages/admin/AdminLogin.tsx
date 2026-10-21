@@ -16,7 +16,7 @@ export default function AdminLogin() {
     e.preventDefault();
     if (password === settings.adminPassword) {
       login();
-      navigate("/admin/dashboard");
+      navigate("/xiaoyu/dashboard");
     } else {
       setError("密码错误");
     }

@@ -15,11 +15,11 @@ import { useState } from "react";
 import { useAppStore } from "@/context/AppContext";
 
 const adminLinks = [
-  { path: "/admin/dashboard", label: "仪表盘", icon: LayoutDashboard },
-  { path: "/admin/articles", label: "文章管理", icon: FileText },
-  { path: "/admin/categories", label: "分类管理", icon: FolderOpen },
-  { path: "/admin/tags", label: "标签管理", icon: Tags },
-  { path: "/admin/settings", label: "系统设置", icon: Settings },
+  { path: "/xiaoyu/dashboard", label: "仪表盘", icon: LayoutDashboard },
+  { path: "/xiaoyu/articles", label: "文章管理", icon: FileText },
+  { path: "/xiaoyu/categories", label: "分类管理", icon: FolderOpen },
+  { path: "/xiaoyu/tags", label: "标签管理", icon: Tags },
+  { path: "/xiaoyu/settings", label: "系统设置", icon: Settings },
 ];
 
 export default function AdminLayout() {
@@ -31,7 +31,7 @@ export default function AdminLayout() {
 
   useEffect(() => {
     if (!adminLoggedIn) {
-      navigate("/admin/login");
+      navigate("/xiaoyu/login");
     }
   }, [adminLoggedIn, navigate]);
 

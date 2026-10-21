@@ -37,7 +37,7 @@ export default function AdminArticles() {
           文章管理
         </h1>
         <Link
-          to="/admin/articles/new"
+          to="/xiaoyu/articles/new"
           className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:shadow-[0_0_20px_rgba(255,107,53,0.4)] transition-all"
         >
           <Plus className="w-4 h-4" />
@@ -117,7 +117,7 @@ export default function AdminArticles() {
                     <td className="px-4 py-3">
                       <div className="flex items-center justify-end gap-2">
                         <Link
-                          to={`/admin/articles/edit/${article.id}`}
+                          to={`/xiaoyu/articles/edit/${article.id}`}
                           className="p-1.5 text-text-muted hover:text-primary transition-colors"
                           title="编辑"
                         >
