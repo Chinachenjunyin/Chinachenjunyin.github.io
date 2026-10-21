@@ -22,11 +22,11 @@ export default function ProfileCard() {
     <div className="lg:col-span-7 bg-white/40 backdrop-blur-md border border-white/40 shadow-xl rounded-3xl transition duration-500 hover:scale-[1.01] p-6 md:p-8 min-h-[280px] flex flex-col justify-between">
       <div className="flex gap-6">
         <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-gradient-to-tr from-indigo-500 to-purple-500 p-1 shrink-0">
-          <div className="w-full h-full rounded-xl bg-white flex items-center justify-center">
-            <span className="font-display font-black text-3xl text-indigo-500">
-              {settings.authorName.charAt(0)}
-            </span>
-          </div>
+          <img
+            src="/avatar.jpg"
+            alt={settings.authorName}
+            className="w-full h-full rounded-xl object-cover bg-white"
+          />
         </div>
         <div className="min-w-0">
           <h1 className="font-display text-2xl md:text-3xl font-bold tracking-wider text-slate-900">
