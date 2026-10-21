@@ -167,8 +167,10 @@ body {
 
 .markdown-body img {
   max-width: 100%;
+  height: auto;
+  display: block;
   border-radius: 16px;
-  margin: 1em 0;
+  margin: 1em auto;
 }
 
 .markdown-body table {

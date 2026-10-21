@@ -28,11 +28,17 @@ export default function ArticleCard({
       <Link to={`/article/${article.id}`} className="group block">
         <div className="bg-white/40 backdrop-blur-md rounded-3xl overflow-hidden border border-white/40 shadow-xl transition duration-500 hover:scale-[1.01]">
           {article.cover && (
-            <div className="aspect-video overflow-hidden">
+            <div className="aspect-video overflow-hidden relative">
+              <img
+                src={article.cover}
+                alt=""
+                aria-hidden
+                className="absolute inset-0 w-full h-full object-cover blur-xl scale-110 opacity-70"
+              />
               <img
                 src={article.cover}
                 alt={article.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="absolute inset-0 w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
               />
             </div>
           )}

@@ -47,8 +47,14 @@ export default function Home() {
             >
               <img
                 src={featured.cover || "/bg.jpg"}
+                alt=""
+                aria-hidden
+                className="absolute inset-0 w-full h-full object-cover blur-xl scale-110 opacity-70"
+              />
+              <img
+                src={featured.cover || "/bg.jpg"}
                 alt={featured.title}
-                className="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105"
+                className="absolute inset-0 w-full h-full object-contain transition duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition" />
               <div className="absolute bottom-5 left-5 right-5">
