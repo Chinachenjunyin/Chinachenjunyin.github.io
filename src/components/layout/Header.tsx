@@ -21,14 +21,14 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded bg-gradient-to-br from-primary to-secondary flex items-center justify-center group-hover:animate-pulse-glow transition-all">
+    <header className="fixed top-4 left-0 right-0 z-50 px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto rounded-full bg-white/70 backdrop-blur-xl border border-white/50 shadow-lg shadow-indigo-500/5 px-4 sm:px-6">
+        <div className="flex items-center justify-between h-14">
+          <Link to="/" className="flex items-center gap-2.5 group">
+            <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center shadow-md shadow-primary/30 group-hover:animate-pulse-glow transition-all">
               <PenTool className="w-4 h-4 text-white" />
             </div>
-            <span className="font-display text-2xl tracking-wider text-text group-hover:text-primary transition-colors">
+            <span className="font-display font-black text-xl tracking-wide text-slate-900 group-hover:text-primary transition-colors">
               {settings.blogTitle}
             </span>
           </Link>
@@ -48,7 +48,7 @@ export default function Header() {
                 {isActive(link.path) && (
                   <motion.div
                     layoutId="header-active"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-primary"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -56,7 +56,7 @@ export default function Header() {
             ))}
             <Link
               to="/admin/login"
-              className="text-xs px-3 py-1.5 rounded border border-border text-text-muted hover:text-text hover:border-primary transition-colors"
+              className="text-xs px-4 py-1.5 rounded-full bg-white/50 backdrop-blur border border-white/60 text-text-muted hover:text-primary hover:border-primary/40 transition-colors"
             >
               后台
             </Link>
@@ -74,12 +74,13 @@ export default function Header() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-surface border-b border-border overflow-hidden"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden max-w-6xl mx-auto mt-2 rounded-3xl bg-white/75 backdrop-blur-xl border border-white/50 shadow-xl shadow-indigo-500/10 overflow-hidden"
           >
-            <div className="px-4 py-4 space-y-3">
+            <div className="px-5 py-4 space-y-3">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}

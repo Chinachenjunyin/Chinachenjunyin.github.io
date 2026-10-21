@@ -60,7 +60,7 @@ export default function ArticleDetail() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="font-display text-4xl text-text mb-4">文章未找到</h1>
+          <h1 className="font-display font-black text-4xl text-slate-900 mb-4">文章未找到</h1>
           <button
             onClick={() => navigate("/articles")}
             className="text-primary hover:underline"
@@ -75,7 +75,7 @@ export default function ArticleDetail() {
   return (
     <div className="min-h-screen">
       {/* Reading progress */}
-      <div className="fixed top-16 left-0 right-0 z-40 h-[3px] bg-surface">
+      <div className="fixed top-0 left-0 right-0 z-[60] h-[3px] bg-white/40">
         <motion.div
           className="h-full bg-gradient-to-r from-primary to-secondary"
           style={{ width: `${progress}%` }}
@@ -90,7 +90,7 @@ export default function ArticleDetail() {
             alt={article.title}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#EEF0FA] via-white/20 to-transparent" />
         </div>
       )}
 
@@ -99,7 +99,7 @@ export default function ArticleDetail() {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-text-muted hover:text-text transition-colors mb-6"
+          className="flex items-center gap-2 text-text-muted hover:text-primary transition-colors mb-6 bg-white/60 backdrop-blur border border-white/50 rounded-full pl-3 pr-4 py-2 shadow-md"
         >
           <ArrowLeft className="w-4 h-4" />
           <span className="text-sm">返回</span>
@@ -109,20 +109,15 @@ export default function ArticleDetail() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          className="glass rounded-[2rem] p-6 sm:p-10 mb-16"
         >
           {category && (
-            <span
-              className="inline-block text-xs px-3 py-1 rounded font-medium mb-4"
-              style={{
-                backgroundColor: `${category.color}20`,
-                color: category.color,
-              }}
-            >
+            <span className="inline-block text-xs px-3 py-1 rounded-full font-medium mb-4 bg-indigo-500/10 text-indigo-600 border border-indigo-200/60 backdrop-blur">
               {category.name}
             </span>
           )}
 
-          <h1 className="font-display text-4xl md:text-5xl text-text tracking-wider mb-6">
+          <h1 className="font-display font-black text-4xl md:text-5xl text-slate-900 tracking-wide mb-6">
             {article.title}
           </h1>
 
@@ -143,13 +138,13 @@ export default function ArticleDetail() {
             <MarkdownRenderer content={article.content} />
           </div>
 
-          <div className="flex flex-wrap items-center gap-2 pt-8 border-t border-border mb-16">
+          <div className="flex flex-wrap items-center gap-2 pt-8 border-t border-white/50">
             <Tag className="w-4 h-4 text-text-muted" />
             {articleTags.map((tag) => (
               <Link
                 key={tag.id}
                 to={`/articles?tag=${tag.id}`}
-                className="text-xs px-3 py-1 rounded-full bg-surface-light text-text-muted hover:text-primary hover:bg-primary/10 transition-colors"
+                className="text-xs px-3 py-1 rounded-full bg-white/50 border border-white/60 text-text-muted hover:text-primary hover:border-primary/40 transition-colors"
               >
                 {tag.name}
               </Link>
@@ -160,7 +155,7 @@ export default function ArticleDetail() {
         {/* Related articles */}
         {relatedArticles.length > 0 && (
           <div className="pb-20">
-            <h2 className="font-display text-3xl text-text tracking-wider mb-6">
+            <h2 className="font-display font-black text-3xl text-slate-900 tracking-wide mb-6">
               相关推荐
             </h2>
             <div className="space-y-4">
@@ -170,13 +165,13 @@ export default function ArticleDetail() {
                   <Link
                     key={ra.id}
                     to={`/article/${ra.id}`}
-                    className="flex items-center gap-4 p-4 bg-surface rounded-lg border border-border hover:border-primary/50 transition-all group"
+                    className="flex items-center gap-4 p-4 bg-white/60 backdrop-blur-xl rounded-2xl border border-white/50 shadow-lg shadow-indigo-500/5 hover:border-primary/40 hover:-translate-y-0.5 transition-all group"
                   >
                     {ra.cover && (
                       <img
                         src={ra.cover}
                         alt={ra.title}
-                        className="w-20 h-14 object-cover rounded flex-shrink-0"
+                        className="w-20 h-14 object-cover rounded-xl flex-shrink-0"
                       />
                     )}
                     <div className="flex-1 min-w-0">
@@ -188,13 +183,7 @@ export default function ArticleDetail() {
                       </p>
                     </div>
                     {raCat && (
-                      <span
-                        className="text-xs px-2 py-0.5 rounded flex-shrink-0"
-                        style={{
-                          backgroundColor: `${raCat.color}20`,
-                          color: raCat.color,
-                        }}
-                      >
+                      <span className="text-xs px-2.5 py-1 rounded-full flex-shrink-0 bg-indigo-500/10 text-indigo-600 border border-indigo-200/60">
                         {raCat.name}
                       </span>
                     )}

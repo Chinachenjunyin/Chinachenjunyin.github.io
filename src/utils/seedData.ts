@@ -20,7 +20,7 @@ export const defaultTags: Tag[] = [
 
 export const defaultSettings: Setting = {
   id: "setting-1",
-  blogTitle: "极光博客",
+  blogTitle: "记录思考",
   blogDescription: "记录技术、设计与生活的点滴",
   authorName: "极光作者",
   authorBio: "热爱前端开发与视觉设计的创作者，喜欢用代码构建美好的数字体验。",

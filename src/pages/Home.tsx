@@ -23,7 +23,7 @@ export default function Home() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="font-display text-4xl md:text-5xl text-text tracking-wider"
+              className="font-display font-black text-4xl md:text-5xl text-slate-900 tracking-wide"
             >
               最新文章
             </motion.h2>
@@ -69,7 +69,7 @@ export default function Home() {
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="font-display text-4xl md:text-5xl text-text tracking-wider mb-10"
+          className="font-display font-black text-4xl md:text-5xl text-slate-900 tracking-wide mb-10"
         >
           热门标签
         </motion.h2>
@@ -86,7 +86,7 @@ export default function Home() {
             >
               <Link
                 to={`/articles?tag=${tag.id}`}
-                className="inline-block px-4 py-2 rounded-full bg-surface border border-border text-text hover:border-primary hover:text-primary transition-all"
+                className="inline-block px-4 py-2 rounded-full bg-white/50 backdrop-blur border border-white/50 shadow-md shadow-indigo-500/5 text-text hover:border-primary/50 hover:text-primary transition-all"
                 style={{
                   fontSize: `${Math.max(0.75, Math.min(1.25, 0.75 + tag.articleCount * 0.1))}rem`,
                 }}

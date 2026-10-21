@@ -44,12 +44,12 @@ export default function ArticleList() {
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="font-display text-5xl md:text-6xl text-text tracking-wider mb-10"
+        className="font-display font-black text-5xl md:text-6xl text-slate-900 tracking-wide mb-10"
       >
         文章列表
       </motion.h1>
 
-      <div className="sticky top-16 z-30 bg-background/95 backdrop-blur-sm py-4 -mx-4 px-4 sm:mx-0 sm:px-0 border-b border-border mb-8">
+      <div className="sticky top-24 z-30 glass rounded-3xl py-4 px-4 sm:px-5 mb-8">
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
@@ -58,12 +58,12 @@ export default function ArticleList() {
               placeholder="搜索文章..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-surface border border-border rounded text-sm text-text placeholder:text-text-muted focus:outline-none focus:border-primary transition-colors"
+              className="w-full pl-10 pr-4 py-2.5 bg-white/60 backdrop-blur border border-white/60 rounded-full text-sm text-text placeholder:text-text-muted focus:outline-none focus:border-primary/60 focus:bg-white/80 transition-colors"
             />
           </div>
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="flex items-center justify-center gap-2 px-4 py-2.5 bg-surface border border-border rounded text-sm text-text-muted hover:text-text hover:border-primary transition-colors"
+            className="flex items-center justify-center gap-2 px-5 py-2.5 bg-white/60 backdrop-blur border border-white/60 rounded-full text-sm text-text-muted hover:text-primary hover:border-primary/50 transition-colors"
           >
             <SlidersHorizontal className="w-4 h-4" />
             筛选
@@ -75,17 +75,17 @@ export default function ArticleList() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="mt-3 pt-3 border-t border-border space-y-3"
+            className="mt-3 pt-3 border-t border-white/50 space-y-3"
           >
             <div>
               <span className="text-xs text-text-muted mb-2 block">分类</span>
               <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => setSelectedCategory("")}
-                  className={`px-3 py-1 rounded-full text-xs border transition-colors ${
+                  className={`px-3.5 py-1.5 rounded-full text-xs border backdrop-blur transition-colors ${
                     !selectedCategory
                       ? "bg-primary text-white border-primary"
-                      : "bg-surface text-text-muted border-border hover:border-primary"
+                      : "bg-white/50 text-text-muted border-white/60 hover:border-primary/50 hover:text-primary"
                   }`}
                 >
                   全部
@@ -94,10 +94,10 @@ export default function ArticleList() {
                   <button
                     key={cat.id}
                     onClick={() => setSelectedCategory(cat.id)}
-                    className={`px-3 py-1 rounded-full text-xs border transition-colors ${
+                    className={`px-3.5 py-1.5 rounded-full text-xs border backdrop-blur transition-colors ${
                       selectedCategory === cat.id
                         ? "text-white border-transparent"
-                        : "bg-surface text-text-muted border-border hover:border-primary"
+                        : "bg-white/50 text-text-muted border-white/60 hover:border-primary/50 hover:text-primary"
                     }`}
                     style={
                       selectedCategory === cat.id
@@ -116,10 +116,10 @@ export default function ArticleList() {
               <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => setSelectedTag("")}
-                  className={`px-3 py-1 rounded-full text-xs border transition-colors ${
+                  className={`px-3.5 py-1.5 rounded-full text-xs border backdrop-blur transition-colors ${
                     !selectedTag
                       ? "bg-primary text-white border-primary"
-                      : "bg-surface text-text-muted border-border hover:border-primary"
+                      : "bg-white/50 text-text-muted border-white/60 hover:border-primary/50 hover:text-primary"
                   }`}
                 >
                   全部
@@ -128,10 +128,10 @@ export default function ArticleList() {
                   <button
                     key={tag.id}
                     onClick={() => setSelectedTag(tag.id)}
-                    className={`px-3 py-1 rounded-full text-xs border transition-colors ${
+                    className={`px-3.5 py-1.5 rounded-full text-xs border backdrop-blur transition-colors ${
                       selectedTag === tag.id
-                        ? "bg-secondary text-background border-secondary"
-                        : "bg-surface text-text-muted border-border hover:border-secondary"
+                        ? "bg-secondary text-white border-secondary"
+                        : "bg-white/50 text-text-muted border-white/60 hover:border-secondary/60 hover:text-secondary"
                     }`}
                   >
                     {tag.name}

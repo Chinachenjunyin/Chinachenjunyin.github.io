@@ -20,12 +20,12 @@ export default function About() {
         transition={{ duration: 0.6 }}
         className="text-center mb-16"
       >
-        <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-          <span className="font-display text-4xl text-white">
+        <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-primary shadow-xl shadow-primary/40 border-4 border-white/70 flex items-center justify-center">
+          <span className="font-display font-black text-4xl text-white">
             {settings.authorName.charAt(0)}
           </span>
         </div>
-        <h1 className="font-display text-5xl md:text-6xl text-text tracking-wider mb-4">
+        <h1 className="font-display font-black text-5xl md:text-6xl text-slate-900 tracking-wide mb-4">
           {settings.authorName}
         </h1>
         <p className="text-lg text-text-muted max-w-2xl mx-auto">
@@ -45,10 +45,10 @@ export default function About() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 + index * 0.1 }}
-            className="p-6 bg-surface rounded-lg border border-border hover:border-primary/50 transition-all"
+            className="p-6 bg-white/60 backdrop-blur-xl rounded-3xl border border-white/50 shadow-xl shadow-indigo-500/10 hover:-translate-y-1 hover:shadow-2xl hover:shadow-indigo-500/15 transition-all"
           >
             <skill.icon className="w-8 h-8 text-primary mb-3" />
-            <h3 className="text-text font-bold mb-1">{skill.label}</h3>
+            <h3 className="font-display text-slate-900 font-bold mb-1">{skill.label}</h3>
             <p className="text-sm text-text-muted">{skill.desc}</p>
           </motion.div>
         ))}
@@ -58,9 +58,9 @@ export default function About() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.5 }}
-        className="bg-surface rounded-lg border border-border p-8 text-center"
+        className="glass rounded-[2rem] p-8 sm:p-10 text-center"
       >
-        <h2 className="font-display text-3xl text-text tracking-wider mb-4">
+        <h2 className="font-display font-black text-3xl text-slate-900 tracking-wide mb-4">
           关于博客
         </h2>
         <p className="text-text-muted leading-relaxed max-w-2xl mx-auto">

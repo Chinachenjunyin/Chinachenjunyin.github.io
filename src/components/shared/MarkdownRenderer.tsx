@@ -1,7 +1,7 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 interface MarkdownRendererProps {
   content: string;
@@ -28,13 +28,13 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
 
             return (
               <SyntaxHighlighter
-                style={vscDarkPlus}
+                style={oneLight}
                 language={language || "text"}
                 PreTag="div"
                 customStyle={{
                   margin: 0,
-                  borderRadius: "8px",
-                  background: "#13131F",
+                  borderRadius: "16px",
+                  background: "rgba(255, 255, 255, 0.65)",
                 }}
               >
                 {String(children).replace(/\n$/, "")}

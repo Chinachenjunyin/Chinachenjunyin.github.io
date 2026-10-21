@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  font-family: "Space Grotesk", "Noto Sans SC", sans-serif;
+  font-family: "Noto Serif SC", "Noto Sans SC", serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #FAFAFA;
-  background-color: #0A0A0F;
+  color: #1E293B;
+  background-color: #EEF0FA;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -20,7 +20,7 @@ html {
 
 body {
   min-height: 100vh;
-  background-color: #0A0A0F;
+  background-color: #EEF0FA;
 }
 
 ::-webkit-scrollbar {
@@ -28,29 +28,50 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0A0A0F;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2A2A3A;
+  background: rgba(99, 102, 241, 0.35);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3A3A4A;
+  background: rgba(99, 102, 241, 0.55);
 }
 
 ::selection {
-  background: rgba(255, 107, 53, 0.3);
-  color: #FAFAFA;
+  background: rgba(99, 102, 241, 0.18);
+  color: #1E293B;
 }
 
 .font-display {
-  font-family: "Bebas Neue", sans-serif;
+  font-family: "Noto Serif SC", "Noto Sans SC", serif;
 }
 
 .font-body {
-  font-family: "Space Grotesk", "Noto Sans SC", sans-serif;
+  font-family: "Noto Serif SC", "Noto Sans SC", sans-serif;
+}
+
+/* Glassmorphism surfaces */
+.glass {
+  background: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 20px 50px rgba(99, 102, 241, 0.12);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.8);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 20px 50px rgba(99, 102, 241, 0.14);
+}
+
+.markdown-body {
+  color: #334155;
 }
 
 .markdown-body h1,
@@ -59,36 +80,37 @@ body {
 .markdown-body h4,
 .markdown-body h5,
 .markdown-body h6 {
-  font-family: "Bebas Neue", "Noto Sans SC", sans-serif;
-  color: #FAFAFA;
+  font-family: "Noto Serif SC", "Noto Sans SC", serif;
+  font-weight: 900;
+  color: #0F172A;
   margin-top: 1.5em;
   margin-bottom: 0.5em;
 }
 
 .markdown-body h1 {
-  font-size: 2.5rem;
-  letter-spacing: 0.02em;
+  font-size: 2.25rem;
+  letter-spacing: 0.01em;
 }
 
 .markdown-body h2 {
-  font-size: 2rem;
-  letter-spacing: 0.02em;
-  border-bottom: 1px solid #2A2A3A;
+  font-size: 1.75rem;
+  letter-spacing: 0.01em;
+  border-bottom: 1px solid #E2E8F0;
   padding-bottom: 0.3em;
 }
 
 .markdown-body h3 {
-  font-size: 1.5rem;
+  font-size: 1.375rem;
 }
 
 .markdown-body p {
   margin-bottom: 1em;
-  line-height: 1.8;
-  color: #FAFAFA;
+  line-height: 1.9;
+  color: #334155;
 }
 
 .markdown-body a {
-  color: #00D9FF;
+  color: #6366F1;
   text-decoration: none;
 }
 
@@ -104,44 +126,48 @@ body {
 
 .markdown-body li {
   margin-bottom: 0.3em;
+  line-height: 1.9;
 }
 
 .markdown-body blockquote {
-  border-left: 4px solid #FF6B35;
-  padding-left: 1em;
+  border-left: 4px solid #6366F1;
+  background: rgba(255, 255, 255, 0.55);
+  padding: 0.75em 1em;
   margin-left: 0;
+  margin-right: 0;
   margin-bottom: 1em;
-  color: #8A8A9A;
+  border-radius: 0 12px 12px 0;
+  color: #64748B;
   font-style: italic;
 }
 
 .markdown-body code {
-  background: #1E1E2E;
+  background: #EEF2FF;
   padding: 0.2em 0.4em;
-  border-radius: 4px;
+  border-radius: 6px;
   font-family: "SF Mono", "Fira Code", monospace;
   font-size: 0.9em;
-  color: #FF6B35;
+  color: #4F46E5;
 }
 
 .markdown-body pre {
-  background: #13131F;
+  background: rgba(255, 255, 255, 0.7);
   padding: 1em;
-  border-radius: 8px;
+  border-radius: 16px;
   overflow-x: auto;
   margin-bottom: 1em;
-  border: 1px solid #2A2A3A;
+  border: 1px solid #E2E8F0;
 }
 
 .markdown-body pre code {
   background: transparent;
   padding: 0;
-  color: #FAFAFA;
+  color: #334155;
 }
 
 .markdown-body img {
   max-width: 100%;
-  border-radius: 8px;
+  border-radius: 16px;
   margin: 1em 0;
 }
 
@@ -153,18 +179,19 @@ body {
 
 .markdown-body th,
 .markdown-body td {
-  border: 1px solid #2A2A3A;
+  border: 1px solid #E2E8F0;
   padding: 0.5em 0.75em;
   text-align: left;
 }
 
 .markdown-body th {
-  background: #1E1E2E;
+  background: rgba(99, 102, 241, 0.06);
   font-weight: 600;
+  color: #1E293B;
 }
 
 .markdown-body hr {
   border: none;
-  border-top: 1px solid #2A2A3A;
+  border-top: 1px solid #E2E8F0;
   margin: 2em 0;
 }

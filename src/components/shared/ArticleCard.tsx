@@ -26,7 +26,7 @@ export default function ArticleCard({
       transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
     >
       <Link to={`/article/${article.id}`} className="group block">
-        <div className="bg-surface rounded-lg overflow-hidden border border-border hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_8px_30px_rgba(255,107,53,0.15)]">
+        <div className="bg-white/60 backdrop-blur-xl rounded-3xl overflow-hidden border border-white/50 shadow-xl shadow-indigo-500/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-indigo-500/15">
           {article.cover && (
             <div className="aspect-video overflow-hidden">
               <img
@@ -36,20 +36,14 @@ export default function ArticleCard({
               />
             </div>
           )}
-          <div className="p-5">
+          <div className="p-6">
             <div className="flex items-center gap-3 mb-3">
               {category && (
-                <span
-                  className="text-xs px-2 py-0.5 rounded font-medium"
-                  style={{
-                    backgroundColor: `${category.color}20`,
-                    color: category.color,
-                  }}
-                >
+                <span className="text-xs px-3 py-1 rounded-full font-medium bg-indigo-500/10 text-indigo-600 border border-indigo-200/60 backdrop-blur">
                   {category.name}
                 </span>
               )}
-              <span className="flex items-center gap-1 text-xs text-text-muted">
+              <span className="flex items-center gap-1 text-xs text-slate-400">
                 <Calendar className="w-3 h-3" />
                 {format(new Date(article.createdAt), "yyyy年M月d日", {
                   locale: zhCN,
@@ -57,11 +51,11 @@ export default function ArticleCard({
               </span>
             </div>
 
-            <h3 className="text-lg font-bold text-text group-hover:text-primary transition-colors line-clamp-2 mb-2">
+            <h3 className="font-display text-lg font-bold text-slate-900 group-hover:text-primary transition-colors line-clamp-2 mb-2">
               {article.title}
             </h3>
 
-            <p className="text-sm text-text-muted line-clamp-2 mb-4">
+            <p className="text-sm text-slate-500 line-clamp-2 mb-4">
               {article.summary}
             </p>
 
@@ -70,18 +64,18 @@ export default function ArticleCard({
                 {tags.slice(0, 2).map((tag) => (
                   <span
                     key={tag.id}
-                    className="text-xs px-2 py-0.5 rounded-full bg-surface-light text-text-muted"
+                    className="text-xs px-2.5 py-0.5 rounded-full bg-white/50 border border-white/60 text-slate-500"
                   >
                     {tag.name}
                   </span>
                 ))}
                 {tags.length > 2 && (
-                  <span className="text-xs text-text-muted">
+                  <span className="text-xs text-slate-400">
                     +{tags.length - 2}
                   </span>
                 )}
               </div>
-              <span className="flex items-center gap-1 text-xs text-text-muted">
+              <span className="flex items-center gap-1 text-xs text-slate-400">
                 <Eye className="w-3 h-3" />
                 {article.viewCount}
               </span>
