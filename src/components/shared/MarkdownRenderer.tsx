@@ -1,7 +1,12 @@
+import { lazy, Suspense } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
+
+// 代码高亮库体积很大，懒加载：只有文章里真有代码块时才下载
+const SyntaxHighlighter = lazy(() =>
+  import("react-syntax-highlighter").then((m) => ({ default: m.Prism }))
+);
 
 interface MarkdownRendererProps {
   content: string;
@@ -26,19 +31,36 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
               );
             }
 
+            const codeText = String(children).replace(/\n$/, "");
             return (
-              <SyntaxHighlighter
-                style={oneLight}
-                language={language || "text"}
-                PreTag="div"
-                customStyle={{
-                  margin: 0,
-                  borderRadius: "16px",
-                  background: "rgba(255, 255, 255, 0.65)",
-                }}
+              <Suspense
+                fallback={
+                  <pre
+                    style={{
+                      margin: 0,
+                      borderRadius: "16px",
+                      background: "rgba(255, 255, 255, 0.65)",
+                      padding: "1em",
+                      overflowX: "auto",
+                    }}
+                  >
+                    <code>{codeText}</code>
+                  </pre>
+                }
               >
-                {String(children).replace(/\n$/, "")}
-              </SyntaxHighlighter>
+                <SyntaxHighlighter
+                  style={oneLight}
+                  language={language || "text"}
+                  PreTag="div"
+                  customStyle={{
+                    margin: 0,
+                    borderRadius: "16px",
+                    background: "rgba(255, 255, 255, 0.65)",
+                  }}
+                >
+                  {codeText}
+                </SyntaxHighlighter>
+              </Suspense>
             );
           },
         }}
